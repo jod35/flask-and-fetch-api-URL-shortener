@@ -1,0 +1,40 @@
+import requests
+from decouple import config
+from flask import Flask,render_template,request,jsonify
+
+url = "https://url-shortener-service.p.rapidapi.com/shorten"
+
+
+
+# print(response.text)
+
+
+app=Flask(__name__)
+
+@app.route('/',methods=['GET','POST'])
+def index():
+    if request.method == "POST":
+        data=request.get_json()
+
+        long_url=data.get('long_url')
+
+        payload = f"url={long_url}"
+        headers = {
+            'content-type': "application/x-www-form-urlencoded",
+            'x-rapidapi-key':config('API_KEY') ,
+            'x-rapidapi-host': "url-shortener-service.p.rapidapi.com"
+            }
+
+        response = requests.request("POST", url, data=payload, headers=headers)
+
+        short_url=response.json()['result_url']
+
+        return jsonify({"short_url":short_url})
+
+    
+    return render_template('index.html')
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+

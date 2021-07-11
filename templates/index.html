@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Flask URL shortener</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="text-center">
+                Flask URL Shortener
+            </h1>
+        </header>
+        <div class="form">
+            <form>
+                <input type="text" name="long_url" id="long_url" class="form-control">
+                <br>
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg">
+            </form>
+        </div>
+        <div class="results">
+            Shortened URL: <span id="result"></span>
+        </div>
+    </div>
+    <script src="{{url_for('static',filename='index.js')}}"></script>
+</body>
+</html>
